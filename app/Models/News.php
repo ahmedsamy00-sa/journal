@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\NewsCategory;
 use Illuminate\Database\Eloquent\Model;
 
 class News extends Model
@@ -16,6 +17,6 @@ class News extends Model
     ];
 
     public function newsCategory(){
-        return $this->belongsTo(NewsCategory::class);
+        return $this->belongsTo(NewsCategory::class, 'newsCategory_id');
     }
 }

@@ -3,11 +3,13 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\News;
+
 
 class NewsCategory extends Model
 {
     protected $fillable = [
-        'title'
+        'name'
     ];
 
     public function news(){

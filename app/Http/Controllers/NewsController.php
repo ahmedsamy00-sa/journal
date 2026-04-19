@@ -12,7 +12,7 @@ class NewsController extends Controller
      */
     public function index()
     {
-        $news = News::latest()->with('news_categories')->get();
+        $news = News::latest()->with('newsCategory')->get();
         return response()->json($news, 200);
     }
 
@@ -25,10 +25,10 @@ class NewsController extends Controller
     {
         $request->validate([
             'title'=>'required|string',
-            'image'=>'string',
-            'desc'=>'string',
+            'image'=>'string|nullable',
+            'desc'=>'string|nullable',
             'newsStatus'=>'required|string',
-            'newsCategory_id'=>'required|exists:news_categories, id'
+            'newsCategory_id'=>'required|exists:news_categories,id'
         ]);
 
         $news = News::create([
