@@ -1,8 +1,13 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\HashtagController;
 use App\Http\Controllers\NewsCategoryController;
 use App\Http\Controllers\NewsController;
+use App\Http\Controllers\SiteContactController;
+use App\Http\Controllers\SiteInfoController;
+use App\Http\Controllers\SiteLinkController;
+use App\Http\Controllers\VideoController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -22,6 +27,30 @@ Route::get('/news', [NewsController::class, 'index']);
 Route::get('/news/{id}', [NewsController::class, 'show']);
 Route::post('/news/add', [NewsController::class, 'store']);
 
+
+//hashtag routes
+Route::get('/hashtag',[HashtagController::class, 'index']);
+Route::post('/hashtag/add/{id}',[HashtagController::class, 'store']);
+
+
+//video routes
+Route::get('/video',[VideoController::class, 'index']);
+Route::post('/video/add',[VideoController::class, 'store']);
+
+
+//site info routes
+Route::get('/info', [SiteInfoController::class, 'index']);
+Route::get('/info/add', [SiteInfoController::class, 'store']);
+
+
+//site links routes
+Route::get('/link', [SiteLinkController::class, 'index']);
+Route::get('/link/add', [SiteLinkController::class, 'store']);
+
+
+//site contact routes
+Route::get('/contact', [SiteContactController::class, 'index']);
+Route::get('/contact/add', [SiteContactController::class, 'store']);
 
 
 Route::get('/user', function (Request $request) {

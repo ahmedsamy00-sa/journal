@@ -19,4 +19,11 @@ class News extends Model
     public function newsCategory(){
         return $this->belongsTo(NewsCategory::class, 'newsCategory_id');
     }
+
+    public function video(){
+        return $this->hasMany(Video::class);
+    }
+    public function hashtags(){
+        return $this->belongsToMany(Hashtag::class);
+    }
 }

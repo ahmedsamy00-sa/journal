@@ -1,0 +1,72 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\Hashtag;
+use App\Models\News;
+use Illuminate\Http\Request;
+
+class HashtagController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     */
+    public function index()
+    {
+        $hashtag = Hashtag::with('news')->get();
+        return response()->json($hashtag, 200);
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request, $id)
+    {
+        $news = News::findOrFail($id);
+        $request->validate([
+            'title'=>'string|required'
+        ]);
+
+        $hashtag = Hashtag::firstOrCreate([
+            'title'=>$request->title
+        ]);
+        $news->hashtags()->attach($hashtag->id);
+
+        return response()->json([
+            'msg'=> 'hashtag created',
+            'data'=> $news->load('hashtags')
+        ], 201);
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(Hashtag $hashtag)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(Hashtag $hashtag)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, Hashtag $hashtag)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(Hashtag $hashtag)
+    {
+        //
+    }
+}
