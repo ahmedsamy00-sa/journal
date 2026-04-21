@@ -148,6 +148,59 @@ Authorization: Bearer {token}
 
 ---
 
+📁 Project Structure
+news-api/
+│── app/
+│   ├── Http/
+│   │   └── Controllers/
+│   │       ├── AuthController.php
+│   │       ├── NewsController.php
+│   │       ├── NewsCategoryController.php
+│   │       ├── HashtagController.php
+│   │       ├── VideoController.php
+│   │       ├── SiteInfoController.php
+│   │       ├── SiteLinkController.php
+│   │       └── SiteContactController.php
+│   │
+│   ├── Models/
+│   │   ├── User.php
+│   │   ├── News.php
+│   │   ├── NewsCategory.php
+│   │   ├── Hashtag.php
+│   │   ├── Video.php
+│   │   ├── SiteInfo.php
+│   │   ├── SiteLink.php
+│   │   └── SiteContact.php
+│
+│── database/
+│   ├── migrations/
+│   │   ├── 0001_01_01_000000_create_users_table.php
+│   │   ├── 0001_01_01_000001_create_cache_table.php
+│   │   ├── 0001_01_01_000002_create_jobs_table.php
+│   │   ├── 2026_04_16_135850_create_personal_access_tokens_table.php
+│   │   ├── 2026_04_19_070405_create_news_categories_table.php
+│   │   ├── 2026_04_19_074650_create_news_table.php
+│   │   ├── 2026_04_20_073113_create_videos_table.php
+│   │   ├── 2026_04_20_074810_create_hashtags_table.php
+│   │   ├── 2026_04_20_075636_create_news_hashtags_table.php
+│   │   ├── 2026_04_20_092947_create_site_infos_table.php
+│   │   ├── 2026_04_20_093147_create_site_links_table.php
+│   │   └── 2026_04_20_093203_create_site_contacts_table.php
+│   │
+│   └── seeders/
+│
+│── routes/
+│   └── api.php
+│
+│── config/
+│── storage/
+│── public/
+│── .env
+│── composer.json
+│── README.md
+
+---
+
 ## 🧠 Database Relations (Important)
 
 * News ↔ Hashtags → **Many-to-Many**
