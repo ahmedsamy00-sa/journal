@@ -20,8 +20,7 @@ Supports:
 * 🗂️ Categories
 * 🔖 Hashtags
 * 🎥 Videos
-* 🌐 Site Info & Links
-* 📩 Contact Messages
+* 🌐 Site Info , Links & Contacts
 
 ---
 
