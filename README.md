@@ -10,13 +10,13 @@
 
 ## 📌 Overview
 
-A RESTful API built with **Laravel** for a **News Management System**.
+A RESTful API built with **Laravel** for a **Journal Management System**.
 The system allows managing news, categories, hashtags, videos, and site content.
 
 Supports:
 
 * 👤 Users Authentication
-* 📰 News Management
+* 📰 Journal Management
 * 🗂️ Categories
 * 🔖 Hashtags
 * 🎥 Videos
