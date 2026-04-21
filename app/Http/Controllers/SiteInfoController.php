@@ -23,8 +23,8 @@ class SiteInfoController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'logo'=>'required|string',
-            'icon'=>'required|string',
+            'logo'=>'required',
+            'icon'=>'required',
             'desc'=>'required|string'
         ]);
 

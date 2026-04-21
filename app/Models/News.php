@@ -24,6 +24,6 @@ class News extends Model
         return $this->hasMany(Video::class);
     }
     public function hashtags(){
-        return $this->belongsToMany(Hashtag::class);
+        return $this->belongsToMany(Hashtag::class, 'news_hashtags');
     }
 }

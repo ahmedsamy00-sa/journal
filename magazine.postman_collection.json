@@ -1,0 +1,593 @@
+{
+  "info": {
+    "_postman_id": "a83837a3-734e-4d87-98d2-9f67aaefece8",
+    "name": "magazine",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "42740215",
+    "_collection_link": "https://go.postman.co/collection/42740215-a83837a3-734e-4d87-98d2-9f67aaefece8?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "news category",
+      "item": [
+        {
+          "name": "get all news categories",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/newsCategory/",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "newsCategory",
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "add news category",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\":\"sports\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/newsCategory/add",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "newsCategory",
+                "add"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "news",
+      "item": [
+        {
+          "name": "get all news",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/news/",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "news",
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get news by id",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/news/{{news_id}}",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "news",
+                "{{news_id}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "add news",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"title\":\"messi goal\",\r\n    \"desc\":\"messi scored a goal in the final match\",\r\n\t\"newsStatus\":\"instant\",\r\n\t\"newsCategory_id\":1\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/news/add",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "news",
+                "add"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Auth",
+      "item": []
+    },
+    {
+      "name": "users",
+      "item": []
+    },
+    {
+      "name": "Hashtags",
+      "item": [
+        {
+          "name": "get all hashtags",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/hashtag/",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "hashtag",
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "add hashtag",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"title\":\"messi goal against real madrid\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/hashtag/add/{{news_id}}",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "hashtag",
+                "add",
+                "{{news_id}}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "videos",
+      "item": [
+        {
+          "name": "get all videos",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/video/",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "video",
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "add video",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"videoStatus\":\"uploaded\",\r\n    \"video_url\":\"http://127.0.0.1:8000/static/videos/1.mp4\",\r\n    \"news_id\":1\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/video/add",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "video",
+                "add"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "site info",
+      "item": [
+        {
+          "name": "get all sites info",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "desc",
+                  "value": "شينسعاشتنبتنشيبسشتبنتشسيب",
+                  "type": "text",
+                  "uuid": "a36dc613-24db-46c0-997d-ada9daee904f"
+                },
+                {
+                  "key": "logo",
+                  "type": "file",
+                  "uuid": "47df4069-e285-434c-abef-454408b74f01",
+                  "src": "postman-cloud:///1f0e6896-682e-4dd0-899d-d22a79f48ca5"
+                },
+                {
+                  "key": "icon",
+                  "type": "file",
+                  "uuid": "30377f83-71b3-4226-858f-bb92305b1ba3",
+                  "src": "postman-cloud:///1f0e71b2-d8b6-4a10-93e0-c1762290ddfc"
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/info",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "info"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "add site info",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "desc",
+                  "value": "شينسعاشتنبتنشيبسشتبنتشسيب",
+                  "type": "text",
+                  "uuid": "a36dc613-24db-46c0-997d-ada9daee904f"
+                },
+                {
+                  "key": "logo",
+                  "type": "file",
+                  "uuid": "47df4069-e285-434c-abef-454408b74f01",
+                  "src": "postman-cloud:///1f0e6896-682e-4dd0-899d-d22a79f48ca5"
+                },
+                {
+                  "key": "icon",
+                  "type": "file",
+                  "uuid": "30377f83-71b3-4226-858f-bb92305b1ba3",
+                  "src": "postman-cloud:///1f0e71b2-d8b6-4a10-93e0-c1762290ddfc"
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/info/add",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "info",
+                "add"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "links",
+      "item": [
+        {
+          "name": "get all links",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/link",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "link"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "add link",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\":\"Facebook\",\r\n    \"url\":\"https://www.facebook.com\",\r\n    \"site_id\":1\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/link/add",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "link",
+                "add"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "contacts",
+      "item": [
+        {
+          "name": "get all contacts",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/contact",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "contact"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "add contacts",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"icon\":\"adsfdassssssssssss\",\r\n    \"type\":\"whatsapp\",\r\n    \"value\":\"+201221100448\",\r\n    \"site_id\":1\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/contact/add",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "contact",
+                "add"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}

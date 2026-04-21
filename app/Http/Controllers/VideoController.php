@@ -35,7 +35,7 @@ class VideoController extends Controller
         ]);
         return response()->json([
             'msg'=>'video added',
-            $video
+            'data'=>$video
         ], 201);
     }
 

@@ -30,7 +30,7 @@ class HashtagController extends Controller
         $hashtag = Hashtag::firstOrCreate([
             'title'=>$request->title
         ]);
-        $news->hashtags()->attach($hashtag->id);
+        $news->hashtags()->attach($hashtag->$id);
 
         return response()->json([
             'msg'=> 'hashtag created',

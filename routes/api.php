@@ -40,17 +40,17 @@ Route::post('/video/add',[VideoController::class, 'store']);
 
 //site info routes
 Route::get('/info', [SiteInfoController::class, 'index']);
-Route::get('/info/add', [SiteInfoController::class, 'store']);
+Route::post('/info/add', [SiteInfoController::class, 'store']);
 
 
 //site links routes
 Route::get('/link', [SiteLinkController::class, 'index']);
-Route::get('/link/add', [SiteLinkController::class, 'store']);
+Route::post('/link/add', [SiteLinkController::class, 'store']);
 
 
 //site contact routes
 Route::get('/contact', [SiteContactController::class, 'index']);
-Route::get('/contact/add', [SiteContactController::class, 'store']);
+Route::post('/contact/add', [SiteContactController::class, 'store']);
 
 
 Route::get('/user', function (Request $request) {
