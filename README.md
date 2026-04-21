@@ -1,6 +1,6 @@
 ---
 
-# 📰 News Laravel API
+# 📰 journal Laravel API
 
 ![Laravel](https://img.shields.io/badge/Laravel-API-red)
 ![PHP](https://img.shields.io/badge/PHP-8.x-blue)
