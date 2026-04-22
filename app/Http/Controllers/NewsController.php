@@ -4,15 +4,19 @@ namespace App\Http\Controllers;
 
 use App\Models\News;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class NewsController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $news = News::latest()->with('newsCategory')->get();
+        $limit = $request->query('limit', 5);
+        $news = Cache::remember('news_page_'.request('page', 1), 60, function() use($limit){
+            return News::latest()->with('newsCategory')->paginate($limit);
+        });
         return response()->json($news, 200);
     }
 
@@ -28,7 +32,8 @@ class NewsController extends Controller
             'image'=>'string|nullable',
             'desc'=>'string|nullable',
             'newsStatus'=>'required|string',
-            'newsCategory_id'=>'required|exists:news_categories,id'
+            'newsCategory_id'=>'required|exists:news_categories,id',
+            'user_id'=>'required|exists:users,id'
         ]);
 
         $news = News::create([
@@ -37,6 +42,7 @@ class NewsController extends Controller
             'desc'=>$request->desc,
             'newsStatus'=>$request->newsStatus,
             'newsCategory_id'=>$request->newsCategory_id,
+            'user_id'=>$request->user_id
         ]);
 
         return response()->json($news, 201);

@@ -17,8 +17,8 @@ return new class extends Migration
             $table->string('title');
             $table->string('desc')->nullable();
             $table->integer('counter')->nullable();
-            $table->enum('newsStatus',['instant', 'hashtag'])->default('instant');
             $table->foreignId('newsCategory_id')->constrained('news_categories')->cascadeOnDelete();
+            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
             $table->timestamps();
         });
     }

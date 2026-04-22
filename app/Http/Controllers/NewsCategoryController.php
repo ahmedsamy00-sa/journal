@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\NewsCategory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class NewsCategoryController extends Controller
 {
@@ -12,7 +13,9 @@ class NewsCategoryController extends Controller
      */
     public function index()
     {
-        $newsCategory = NewsCategory::all();
+        $newsCategory = Cache::remember('news_category', 60, function(){
+            return NewsCategory::all();
+        });
         return response()->json($newsCategory, 200);
     }
 

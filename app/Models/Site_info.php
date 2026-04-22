@@ -9,7 +9,9 @@ class Site_info extends Model
     protected $fillable = [
         'logo',
         'icon',
-        'desc'
+        'desc',
+        'lat',
+        'lng'
     ];
 
     public function links(){

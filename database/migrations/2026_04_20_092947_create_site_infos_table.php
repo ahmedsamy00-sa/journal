@@ -16,6 +16,8 @@ return new class extends Migration
             $table->string('logo');
             $table->string('icon');
             $table->string('desc');
+            $table->float('lat');
+            $table->float('lng');
             $table->timestamps();
         });
     }

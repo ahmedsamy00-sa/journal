@@ -24,13 +24,15 @@ class AuthController extends Controller
             'name'=>"required|string",
             'email'=>'required|string|unique:users,email',
             'phone'=>'required|string|unique:users,phone',          
-            'password'=>'required|min:8|string'
+            'password'=>'required|min:8|string',
+            'role'=>'string'
         ]);
 
         $user = User::create([
             'name'=>$request->name,
             'email'=>$request->email,
             'phone'=>$request->phone,
+            'role'=>$request->role,
             'password'=>Hash::make($request->password),
         ]);
 

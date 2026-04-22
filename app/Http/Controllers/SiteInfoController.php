@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Site_info;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class SiteInfoController extends Controller
 {
@@ -12,7 +13,9 @@ class SiteInfoController extends Controller
      */
     public function index()
     {
-        $site = Site_info::with('links', 'contacts')->get();
+        $site = Cache::remember('site', 60, function (){
+            return Site_info::with('links', 'contacts')->get();
+        });
         return response()->json($site, 200);
     }
 
@@ -25,13 +28,17 @@ class SiteInfoController extends Controller
         $request->validate([
             'logo'=>'required',
             'icon'=>'required',
-            'desc'=>'required|string'
+            'desc'=>'required|string',
+            'lat'=>'required|numeric',
+            'lng'=>'required|numeric'
         ]);
 
         $site = Site_info::create([
             'logo'=>$request->logo,
             'icon'=>$request->icon,
-            'desc'=>$request->desc
+            'desc'=>$request->desc,
+            'lat'=>$request->lat,
+            'lng'=>$request->lng
         ]);
         return response()->json([
             'msg'=>'site info added',

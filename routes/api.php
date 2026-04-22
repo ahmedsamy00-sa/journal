@@ -12,31 +12,53 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 //Auth routes
-Route::get('/users', [AuthController::class, 'index']);
 Route::post('/users/login',[AuthController::class,'login']);
 Route::post('/users/register',[AuthController::class,'register']);
 
 
-//News Category routes
-Route::get('/newsCategory', [NewsCategoryController::class, 'index']);
-Route::post('/newsCategory/add', [NewsCategoryController::class, 'store']);
+
+Route::middleware(['auth:sanctum'])->group(function () {
+    
+    //user
+    Route::get('/users', [AuthController::class, 'index'])
+        ->middleware('role:admin');
+    
+    
+    //News Category routes
+    Route::get('/newsCategory', [NewsCategoryController::class, 'index'])
+        ->middleware('role:admin,user,author');
+    
+    Route::post('/newsCategory/add', [NewsCategoryController::class, 'store'])
+        ->middleware('role:admin');
+    
+    
+    // news
+    Route::get('/news', [NewsController::class, 'index'])
+        ->middleware('role:admin,user,author');
+
+    Route::get('/news/{id}', [NewsController::class, 'show'])
+        ->middleware('role:admin,user,author');
+
+    Route::post('/news/add', [NewsController::class, 'store'])
+        ->middleware('role:admin,author');
 
 
-//news routes
-Route::get('/news', [NewsController::class, 'index']);
-Route::get('/news/{id}', [NewsController::class, 'show']);
-Route::post('/news/add', [NewsController::class, 'store']);
+    // hashtag
+    Route::get('/hashtag', [HashtagController::class, 'index'])
+        ->middleware('role:admin,user,author');
+
+    Route::post('/hashtag/add/{id}', [HashtagController::class, 'store'])
+        ->middleware('role:admin');
 
 
-//hashtag routes
-Route::get('/hashtag',[HashtagController::class, 'index']);
-Route::post('/hashtag/add/{id}',[HashtagController::class, 'store']);
+    // video
+    Route::get('/video', [VideoController::class, 'index'])
+        ->middleware('role:admin,user,author');
 
+    Route::post('/video/add', [VideoController::class, 'store'])
+        ->middleware('role:admin');
 
-//video routes
-Route::get('/video',[VideoController::class, 'index']);
-Route::post('/video/add',[VideoController::class, 'store']);
-
+});
 
 //site info routes
 Route::get('/info', [SiteInfoController::class, 'index']);

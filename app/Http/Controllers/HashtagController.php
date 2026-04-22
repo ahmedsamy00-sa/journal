@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Hashtag;
 use App\Models\News;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class HashtagController extends Controller
 {
@@ -13,7 +14,9 @@ class HashtagController extends Controller
      */
     public function index()
     {
-        $hashtag = Hashtag::with('news')->get();
+        $hashtag = Cache::remember('hashtags', 60, function(){
+            Hashtag::with('news')->get();
+        }); 
         return response()->json($hashtag, 200);
     }
 
