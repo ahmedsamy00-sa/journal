@@ -13,6 +13,16 @@
         {
           "name": "get all news categories",
           "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token1}}",
+                  "type": "string"
+                }
+              ]
+            },
             "method": "GET",
             "header": [
               {
@@ -43,6 +53,16 @@
         {
           "name": "add news category",
           "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token1}}",
+                  "type": "string"
+                }
+              ]
+            },
             "method": "POST",
             "header": [
               {
@@ -53,7 +73,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"name\":\"sports\"\r\n}",
+              "raw": "{\r\n    \"name\":\"politics\"\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -87,6 +107,16 @@
         {
           "name": "get all news",
           "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token1}}",
+                  "type": "string"
+                }
+              ]
+            },
             "method": "GET",
             "header": [
               {
@@ -96,7 +126,52 @@
               }
             ],
             "url": {
-              "raw": "http://127.0.0.1:8000/api/news/",
+              "raw": "http://127.0.0.1:8000/api/news?limit=4",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "news"
+              ],
+              "query": [
+                {
+                  "key": "limit",
+                  "value": "4"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "delete news",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token1}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/news/delete/{{news_id}}",
               "protocol": "http",
               "host": [
                 "127",
@@ -108,7 +183,8 @@
               "path": [
                 "api",
                 "news",
-                ""
+                "delete",
+                "{{news_id}}"
               ]
             }
           },
@@ -117,6 +193,16 @@
         {
           "name": "get news by id",
           "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token1}}",
+                  "type": "string"
+                }
+              ]
+            },
             "method": "GET",
             "header": [
               {
@@ -147,6 +233,16 @@
         {
           "name": "add news",
           "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token1}}",
+                  "type": "string"
+                }
+              ]
+            },
             "method": "POST",
             "header": [
               {
@@ -157,7 +253,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"title\":\"messi goal\",\r\n    \"desc\":\"messi scored a goal in the final match\",\r\n\t\"newsStatus\":\"instant\",\r\n\t\"newsCategory_id\":1\r\n}",
+              "raw": "{\r\n    \"title\":\"messi goal\",\r\n    \"desc\":\"messi scored a goal in the final match\",\r\n\t\"newsCategory_id\":1\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -187,11 +283,130 @@
     },
     {
       "name": "Auth",
-      "item": []
+      "item": [
+        {
+          "name": "login",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\":\"samy@gamil.com\",\r\n    \"password\":\"samy1234\"\r\n\t// \"email\":\"said@gamil.com\",\r\n    // \"password\":\"said1234\"\r\n    // \"email\":\"youssef@gamil.com\",\r\n    // \"password\":\"youssef1234\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/users/login",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "users",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "register",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\":\"youssef\",\r\n    \"email\":\"youssef@gamil.com\",\r\n    \"password\":\"youssef1234\",\r\n    \"phone\":\"01221104488\",\r\n    \"role\":\"user\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/users/register",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "users",
+                "register"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
     },
     {
       "name": "users",
-      "item": []
+      "item": [
+        {
+          "name": "get all users",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token1}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/users",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "users"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
     },
     {
       "name": "Hashtags",
@@ -199,6 +414,16 @@
         {
           "name": "get all hashtags",
           "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token1}}",
+                  "type": "string"
+                }
+              ]
+            },
             "method": "GET",
             "header": [
               {
@@ -227,8 +452,58 @@
           "response": []
         },
         {
+          "name": "get all hashtags with news",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token1}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/hashtagNews/",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "hashtagNews",
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
           "name": "add hashtag",
           "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token1}}",
+                  "type": "string"
+                }
+              ]
+            },
             "method": "POST",
             "header": [
               {
@@ -239,7 +514,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"title\":\"messi goal against real madrid\"\r\n}",
+              "raw": "{\r\n    \"title\":\"messi goal against man united\"\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
