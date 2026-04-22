@@ -36,11 +36,14 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/news', [NewsController::class, 'index'])
         ->middleware('role:admin,user,author');
 
-    Route::get('/news/{id}', [NewsController::class, 'show'])
+    Route::get('/news/{news}', [NewsController::class, 'show'])
         ->middleware('role:admin,user,author');
 
     Route::post('/news/add', [NewsController::class, 'store'])
-        ->middleware('role:admin,author');
+    ->middleware('role:admin,author');
+
+    Route::delete('/news/delete/{news}', [NewsController::class, 'destroy'])
+    ->middleware('role:admin,author');
 
 
     // hashtag

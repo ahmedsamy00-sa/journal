@@ -12,7 +12,6 @@ class News extends Model
         'image',
         'desc',
         'counter',
-        'newsStatus',
         'newsCategory_id',
         'user_id'
     ];

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\News;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 
 class NewsController extends Controller
@@ -27,22 +28,20 @@ class NewsController extends Controller
      */
     public function store(Request $request)
     {
+        $user = Auth::user();
         $request->validate([
             'title'=>'required|string',
             'image'=>'string|nullable',
             'desc'=>'string|nullable',
-            'newsStatus'=>'required|string',
             'newsCategory_id'=>'required|exists:news_categories,id',
-            'user_id'=>'required|exists:users,id'
         ]);
 
         $news = News::create([
             'title'=>$request->title,
             'image'=>$request->image,
             'desc'=>$request->desc,
-            'newsStatus'=>$request->newsStatus,
             'newsCategory_id'=>$request->newsCategory_id,
-            'user_id'=>$request->user_id
+            'user_id'=>$user->id
         ]);
 
         return response()->json($news, 201);
@@ -53,8 +52,10 @@ class NewsController extends Controller
      */
     public function show(News $news)
     {
-        $news = News::with('news_categories')->findOrFail($news);
-        return response()->json($news, 200);
+        News::where('id', $news->id)->update([
+            'counter' => $news->counter + 1
+        ]);
+        return response()->json($news->fresh(), 200);
     }
 
 
@@ -71,6 +72,7 @@ class NewsController extends Controller
      */
     public function destroy(News $news)
     {
-        //
+        News::query()->delete();
+        return response()->json(['msg'=>'news deleted'], 200);    
     }
 }

@@ -22,7 +22,7 @@ class AuthController extends Controller
     {
         $request->validate([
             'name'=>"required|string",
-            'email'=>'required|string|unique:users,email',
+            'email'=>'required|email|unique:users,email',
             'phone'=>'required|string|unique:users,phone',          
             'password'=>'required|min:8|string',
             'role'=>'string'
