@@ -9,6 +9,7 @@ use App\Http\Controllers\SiteInfoController;
 use App\Http\Controllers\SiteLinkController;
 use App\Http\Controllers\VideoController;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Route;
 
 //Auth routes
@@ -76,6 +77,14 @@ Route::post('/link/add', [SiteLinkController::class, 'store']);
 //site contact routes
 Route::get('/contact', [SiteContactController::class, 'index']);
 Route::post('/contact/add', [SiteContactController::class, 'store']);
+
+Route::get('/test-cache', function(){
+    return Cache::remember('test', 10, function(){
+        return "Time:".now();
+    
+    });
+});
+
 
 
 Route::get('/user', function (Request $request) {
