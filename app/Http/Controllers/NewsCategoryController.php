@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\NewsCategory;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 
@@ -13,7 +14,7 @@ class NewsCategoryController extends Controller
      */
     public function index()
     {
-        $newsCategory = Cache::remember('news_category', 60, function(){
+        $newsCategory = Cache::remember('news_category', Carbon::now()->addMinutes(60), function(){
             return NewsCategory::all();
         });
         return response()->json($newsCategory, 200);
@@ -31,7 +32,7 @@ class NewsCategoryController extends Controller
         $newsCategory = NewsCategory::create([
             'name'=>$request->name
         ]);
-
+        Cache::flush();
         return response()->json($newsCategory, 201);
     }
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Site_info;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 
@@ -13,7 +14,7 @@ class SiteInfoController extends Controller
      */
     public function index()
     {
-        $site = Cache::remember('site', 60, function (){
+        $site = Cache::remember('site', Carbon::now()->addMinutes(60), function (){
             return Site_info::with('links', 'contacts')->get();
         });
         return response()->json($site, 200);
@@ -40,6 +41,7 @@ class SiteInfoController extends Controller
             'lat'=>$request->lat,
             'lng'=>$request->lng
         ]);
+        Cache::flush();
         return response()->json([
             'msg'=>'site info added',
             $site

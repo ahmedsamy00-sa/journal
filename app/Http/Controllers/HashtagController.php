@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Hashtag;
 use App\Models\News;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 
@@ -14,8 +15,8 @@ class HashtagController extends Controller
      */
     public function index()
     {
-        $hashtag = Cache::remember('hashtags', 60, function(){
-            Hashtag::with('news')->get();
+        $hashtag = Cache::remember('hashtags', Carbon::now()->addMinutes(60), function(){
+            return Hashtag::with('news')->get();
         }); 
         return response()->json($hashtag, 200);
     }
@@ -33,11 +34,14 @@ class HashtagController extends Controller
         $hashtag = Hashtag::firstOrCreate([
             'title'=>$request->title
         ]);
-        $news->hashtags()->attach($hashtag->$id);
+        $news->hashtags()->attach($hashtag->id);
 
+        Cache::flush();
         return response()->json([
             'msg'=> 'hashtag created',
-            'data'=> $news->load('hashtags')
+            'news'=>$news,
+            'hashtags'=>$hashtag,
+            
         ], 201);
     }
 
