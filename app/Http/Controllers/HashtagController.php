@@ -20,6 +20,13 @@ class HashtagController extends Controller
         }); 
         return response()->json($hashtag, 200);
     }
+    public function getAll()
+    {
+        $hashtag = Cache::remember('hashtags', Carbon::now()->addMinutes(60), function(){
+            return Hashtag::all();
+        }); 
+        return response()->json($hashtag, 200);
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -39,7 +46,6 @@ class HashtagController extends Controller
         Cache::flush();
         return response()->json([
             'msg'=> 'hashtag created',
-            'news'=>$news,
             'hashtags'=>$hashtag,
             
         ], 201);

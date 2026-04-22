@@ -51,6 +51,9 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/hashtag', [HashtagController::class, 'index'])
         ->middleware('role:admin,user,author');
 
+    Route::get('/hashtagNews', [HashtagController::class, 'getAll'])
+        ->middleware('role:admin,user,author');
+
     Route::post('/hashtag/add/{id}', [HashtagController::class, 'store'])
         ->middleware('role:admin');
 
