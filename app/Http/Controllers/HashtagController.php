@@ -53,13 +53,6 @@ class HashtagController extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Hashtag $hashtag)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
