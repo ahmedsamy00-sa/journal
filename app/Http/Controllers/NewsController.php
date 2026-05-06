@@ -46,7 +46,7 @@ public function index(Request $request)
         $request->validate([
             'title'=>'required|string',
             'image'=>'string|nullable',
-            'desc'=>'string|nullable',
+            'desc'=>'required|string|nullable',
             'newsCategory_id'=>'required|exists:news_categories,id',
         ]);
 
@@ -79,7 +79,19 @@ public function index(Request $request)
      */
     public function update(Request $request, News $news)
     {
-        //
+        $request->validate([
+            "title"=>'string',
+            "desc"=>'string|nullable',
+            "image"=>'image|nullable',
+        ]);
+        $news->update([
+            "title"=>$request->title,
+            'image'=>$request->image,
+            'desc'=>$request->desc            
+        ]);
+        
+        Cache::flush();
+        return response()->json($news->fresh(), 201);
     }
 
     /**

@@ -70,7 +70,7 @@ class AuthController extends Controller
      */
     public function show(News $news)
     {
-        //
+        return response()->json($news, 200);
     }
 
     /**
@@ -78,7 +78,16 @@ class AuthController extends Controller
      */
     public function update(Request $request, News $news)
     {
-        //
+        $request->validate([
+            'name'=>'string',
+            'phone'=>'string|unique:users:phone'
+        ]);
+        $news->update([
+            'name'=>$request->name,
+            'phone'=>$request->phone
+        ]);
+
+        return response()->json($news->fresh(), 200);
     }
 
     /**
@@ -86,6 +95,7 @@ class AuthController extends Controller
      */
     public function destroy(News $news)
     {
-        //
+        $news->deleteOrFail();
+        return response()->json(['msg'=>'user deleted'], 200);
     }
 }
